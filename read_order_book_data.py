@@ -1,5 +1,5 @@
 # +
-''' file to read order book data'''
+''' t_steps to read order book data'''
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,7 +15,7 @@ df_o =  pd.read_csv(r'/home/learner/Order-Book-Plotting/order_book_depth10/AMZN_
 
 # +
 t = df_m.values[: , 0]
-t_steps = len(t)
+#t_steps = len(t)
 prices = df_m.values[: , 4]
 order_type = df_m.values[: , 1]
 
@@ -49,13 +49,11 @@ for i in range(20):
     plt.plot(buy_price,cumulative_vol_buy)
     plt.plot(sell_price,cumulative_vol_sell)
     plt.show()
-    time.sleep(1)
+    time.sleep(0.33)
     plt.clf()
     
 
-sell_orders = np.zeros((N_intervals,t_steps))
-buy_orders = np.zeros((N_intervals,len(t)))
 # -
-
+del t_steps
 
 
