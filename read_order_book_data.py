@@ -5,6 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import time
+import pylab as pl
+from IPython import display
 
 # global variables
 N_intervals = 10       # number of intervals between max and min price 
@@ -34,7 +36,9 @@ cumulative_vol_buy = np.zeros((levels,))
 cumulative_vol_sell = np.zeros((levels,))
 
 
-for i in range(20):
+plt.Figure()
+
+for i in range(100):
     buy_price = df_o.values[i,0::4]/10000
     buy_amount = df_o.values[i,1::4]
     sell_price = df_o.values[i,2::4]/10000
@@ -44,14 +48,24 @@ for i in range(20):
         cumulative_vol_buy[j] =  np.sum(buy_amount[0:j+1])
         cumulative_vol_sell[j] =  np.sum(sell_amount[0:j+1])
     
+    
+    #pl.plot(buy_price,buy_amount)
+    #pl.plot(sell_price,sell_amount)
+    pl.plot(buy_price,cumulative_vol_buy)
+    pl.plot(sell_price,cumulative_vol_sell)
+    display.clear_output(wait=True)
+    display.display(pl.gcf())
+    time.sleep(0.05)
+    
     #plt.plot(buy_price,buy_amount)
     #plt.plot(sell_price,sell_amount)
-    plt.plot(buy_price,cumulative_vol_buy)
-    plt.plot(sell_price,cumulative_vol_sell)
-    plt.show()
-    time.sleep(0.33)
-    plt.clf()
-    
+#    plt.plot(buy_price,cumulative_vol_buy)
+ #   plt.plot(sell_price,cumulative_vol_sell)   
+  #  plt.clf()
+   # plt.pause(0.2)
+    #plt.show()
+
+
 
 # -
 del t_steps
