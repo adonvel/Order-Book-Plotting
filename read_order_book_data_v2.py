@@ -37,8 +37,9 @@ cumulative_vol_sell = np.zeros((levels,))
 
 
 plt.Figure()
+#axes.set_ylim([ymin,ymax])
 
-for i in range(100):
+for i in range(10000):
     buy_price = df_o.values[i,0::4]/10000
     buy_amount = df_o.values[i,1::4]
     sell_price = df_o.values[i,2::4]/10000
@@ -51,12 +52,15 @@ for i in range(100):
     
     #pl.plot(buy_price,buy_amount)
     #pl.plot(sell_price,sell_amount)
+    axes = plt.gca()
+    axes.set_xlim([np.amin(market_price),np.amax(market_price)])
     pl.plot(buy_price,cumulative_vol_buy)
     pl.plot(sell_price,cumulative_vol_sell)
-    display.clear_output(wait=True)
+
+    time.sleep(0.01)
     display.display(pl.gcf())
-    time.sleep(0.05)
-    
+    display.clear_output(wait=True)  
+    plt.clf()
     #plt.plot(buy_price,buy_amount)
     #plt.plot(sell_price,sell_amount)
 #    plt.plot(buy_price,cumulative_vol_buy)
