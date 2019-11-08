@@ -27,7 +27,7 @@ w=10
 market_price = prices[np.where(order_type == 4) or np.where(order_type == 5)]/10000
 time_price = t[np.where(order_type == 4) or np.where(order_type == 5)]
 
-for k in range(100):
+for k in range(1000):
     plt.clf()
     axes = plt.gca()
     plt.title('Evolution of Microsoft stock', size=16)
@@ -52,7 +52,7 @@ v = 500
 
 plt.Figure()
 
-for i in range(100):
+for i in range(1000):
     
     #Load data in arrays
     
@@ -75,16 +75,16 @@ for i in range(100):
     plt.title('Order book evolution',size=16)
     plt.ylabel('Cumulative order depth (shares $\cdot $ USD) ')
     plt.xlabel('Price (USD)')
-    pl.plot(buy_price,cumulative_vol_buy)
-    pl.plot(sell_price,cumulative_vol_sell)
-    
+    pl.plot(buy_price,cumulative_vol_buy,label = 'Buy orders')
+    pl.plot(sell_price,cumulative_vol_sell, label = 'Sell orders')
+    plt.legend()
     # textstr = '\n'.join(('text'))
     # pl.text(0, 0, textstr)
     
     time.sleep(0.001)
     display.display(pl.gcf())
     display.clear_output(wait=True)  
-    
+
 
 # -
 
